@@ -12,7 +12,7 @@
 
 #define	WSVERS	MAKEWORD(2, 0)
 #define BUFLEN 2000
-#pragma comment(lib,"ws2_32.lib")  //使用winsock 2.2 library
+#pragma comment(lib,"ws2_32.lib")  //使用winsock 2.2 library，用了这个语句就不用在项目属性里设置
 void main(int argc, char *argv[])
 {
 	struct	sockaddr_in fsin;	    /* the from address of a client	  */
