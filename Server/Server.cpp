@@ -42,7 +42,13 @@ void main(int argc, char *argv[])
 		while (!_kbhit()) { 		                                   // 检测是否有按键,如果没有则进入循环体执行
 			alen = sizeof(struct sockaddr);                         // 取到地址结构的长度
 			ssock = accept(msock, (struct sockaddr *) & fsin, &alen); // 如果在连接请求队列中有连接请求，则接受连接请求并建立连接，返回该连接的套接字，否则，本语句被阻塞直到队列非空。fsin包含客户端IP地址和端口号
-			//ssock的端口和msock不相同
+			//ssock的端口和msock相同
+			/*
+			struct sockaddr_in connectAddr, listenAddr;
+			int connectLen = sizeof(connectAddr), listenLen = sizeof(listenAddr);
+			getsockname(ssock, (struct sockaddr *) & connectAddr, &connectLen);//50500
+			getsockname(msock, (struct sockaddr *) & listenAddr, &listenLen);//50500
+			printf("connect port: %d\nlisten port: %d\n", ntohs(connectAddr.sin_port), ntohs(listenAddr.sin_port));*/
 			(void)time(&now);                                      // 取得系统时间
 			pts = ctime(&now);                                      // 把时间转换为字符串
 			rc = recv(ssock, buf, BUFLEN, 0);//收到信息
