@@ -8,11 +8,12 @@
 #include <stdio.h>
 #include <winsock2.h>
 #include <time.h>
-#include "conio.h"
+#include <conio.h>
 
 #define	WSVERS	MAKEWORD(2, 0)
 #define BUFLEN 2000
 #pragma comment(lib,"ws2_32.lib")  //使用winsock 2.2 library，用了这个语句就不用在项目属性里设置
+
 void main(int argc, char *argv[])
 {
 	struct	sockaddr_in fsin;	    /* the from address of a client	  */
@@ -49,6 +50,13 @@ void main(int argc, char *argv[])
 			getsockname(ssock, (struct sockaddr *) & connectAddr, &connectLen);//50500
 			getsockname(msock, (struct sockaddr *) & listenAddr, &listenLen);//50500
 			printf("connect port: %d\nlisten port: %d\n", ntohs(connectAddr.sin_port), ntohs(listenAddr.sin_port));*/
+
+			/*struct sockaddr_in peerAddr;
+			int peerLen = sizeof(peerAddr);
+			getpeername(ssock, (struct sockaddr *) & peerAddr, &peerLen);
+			printf("getpeeername: %d\n", ntohs(peerAddr.sin_port));
+			printf("sockaddr: %d", ntohs(fsin.sin_port));//两个是一样的*/
+
 			(void)time(&now);                                      // 取得系统时间
 			pts = ctime(&now);                                      // 把时间转换为字符串
 			rc = recv(ssock, buf, BUFLEN, 0);//收到信息

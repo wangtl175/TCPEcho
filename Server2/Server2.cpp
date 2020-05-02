@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <winsock2.h>
 #include <time.h>
-#include "conio.h"
+#include <conio.h>
 
 #define	WSVERS	MAKEWORD(2, 0)
 #define BUFLEN 2000

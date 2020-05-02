@@ -40,6 +40,8 @@ void main(int argc, char *argv[])
         scanf("%s", str);
         int sc = send(sock, str, strlen(str), 0);
         printf("\n收到消息：\n");
+        //int k = 0;
+        //Sleep(500);
         while (true)//用循环接收信息，当出错或连接关闭时退出循环
         {
             cc = recv(sock, buf, BUFLEN, 0);
@@ -54,10 +56,12 @@ void main(int argc, char *argv[])
             }
             else if (cc > 0)
             {
+                k++;
                 buf[cc] = '\0';
                 printf("%s", buf);
             }
         }
+        //printf("接收了：%d次\n", k);//虽然Server2发了4次，但客户端不一定接收四次，因为TCP是字节流方式传输
     }
     closesocket(sock);                             // 关闭监听套接字
     WSACleanup();                                  // 卸载winsock library
